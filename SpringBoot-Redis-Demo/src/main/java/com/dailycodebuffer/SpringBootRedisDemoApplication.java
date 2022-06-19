@@ -8,6 +8,8 @@ public class SpringBootRedisDemoApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootRedisDemoApplication.class, args);
+
+		System.out.println("Spring Redis Running !");
 	}
 
 }

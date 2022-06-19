@@ -28,6 +28,8 @@ public class UserController {
     public ResponseEntity<List<User>> fetchAllUser() {
         List<User> users;
         users = userService.fetchAllUser();
+        users.forEach(System.out::println);
+
         return ResponseEntity.ok(users);
     }
 
