@@ -12,23 +12,21 @@ import com.entity.Major;
 import com.entity.Student;
 
 @Service
-public class APIService {
-
+public class APIService 
+{
 	static List<Student> studentList = new ArrayList<>();
 
 	static {
-		studentList.add(new Student("19VC21", "John", "Wayne", "11",
-				new Address("12A", "Bay Avenue", "SanFrancisco", "CA", "91234"), Major.MATHS));
-		studentList.add(new Student("19VC22", "Mary", "Jane", "11",
-				new Address("10A", "Cross Avenue", "SanFrancisco", "CA", "91238"), Major.CHEMISTRY));
-		studentList.add(new Student("19VC23", "Peter", "Parker", "11",
-				new Address("1A", "First Avenue", "SanFrancisco", "CA", "91934"), Major.PHYSICS));
+		studentList.add(new Student("STU101", "John", "Wayne", "11", new Address("12A", "Bay Avenue", "SanFrancisco", "CA", "91234"), Major.MATHS));
+		studentList.add(new Student("STU102", "Mary", "Jane", "11",  new Address("10A", "Cross Avenue", "SanFrancisco", "CA", "91238"), Major.CHEMISTRY));
+		studentList.add(new Student("STU103", "Peter", "Parker", "11", new Address("1A", "First Avenue", "SanFrancisco", "CA", "91934"), Major.PHYSICS));
 	}
 
 	@Cacheable(value = "student-cache", key = "'StudentCache'+#studentId")					
 	public Optional<Student> fetchStudent(String studentId) throws InterruptedException 
 	{
-		Thread.sleep(4000);
+		Thread.sleep(4000);			// kayde se har baar to 4 sec fetching time lena chaiye n, but aisa hogi nhi each time,
+									// kewal 1st time hi 4 sec lagega fetch me, agli baar se cache me stored wahi data aapko direct turant server kar diya jayega.
 
 		return studentList.stream().filter(t -> t.getId().equalsIgnoreCase(studentId)).findFirst();
 	}
@@ -36,7 +34,11 @@ public class APIService {
 	
 }
 
-/*	@Cacheable : 
+/*	@Cacheable 	: to set our cache
+	@CacheEvict : to remove from cache
+	@CachePut 	:  to update or cache
 	
-
 */
+
+
+
