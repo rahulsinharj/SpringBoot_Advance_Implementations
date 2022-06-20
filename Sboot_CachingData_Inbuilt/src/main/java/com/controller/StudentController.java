@@ -21,7 +21,7 @@ public class StudentController {
 	@GetMapping("/")
 	public ResponseEntity<Student> fetchStudent(@RequestParam(name = "studentId") String studentId) throws InterruptedException 
 	{
-		return new ResponseEntity<>(aPIService.fetchStudent(studentId).get(), HttpStatus.OK);
+		return new ResponseEntity<>(aPIService.fetchStudent(studentId), HttpStatus.OK);
 	}
 	
 	

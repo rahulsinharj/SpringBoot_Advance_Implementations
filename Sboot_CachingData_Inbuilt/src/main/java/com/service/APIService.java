@@ -2,7 +2,6 @@ package com.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -23,12 +22,12 @@ public class APIService
 	}
 
 	@Cacheable(value = "student-cache", key = "'StudentCache'+#studentId")					
-	public Optional<Student> fetchStudent(String studentId) throws InterruptedException 
+	public Student fetchStudent(String studentId) throws InterruptedException 
 	{
 		Thread.sleep(4000);			// kayde se har baar to 4 sec fetching time lena chaiye n, but aisa hogi nhi each time,
 									// kewal 1st time hi 4 sec lagega fetch me, agli baar se cache me stored wahi data aapko direct turant server kar diya jayega.
 
-		return studentList.stream().filter(t -> t.getId().equalsIgnoreCase(studentId)).findFirst();
+		return studentList.stream().filter(t -> t.getId().equalsIgnoreCase(studentId)).findFirst().orElse(null);
 	}
 
 	
