@@ -10,21 +10,22 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("user")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @PostMapping("/user")
+    @PostMapping("/")
     public ResponseEntity<String> saveUser(@RequestBody User user) {
         boolean result = userService.saveUser(user);
-        if(result)
+        if (result)
             return ResponseEntity.ok("User Created Successfully!!");
         else
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
-    @GetMapping("/user")
+    @GetMapping("/")
     public ResponseEntity<List<User>> fetchAllUser() {
         List<User> users;
         users = userService.fetchAllUser();
@@ -33,26 +34,29 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
-    @GetMapping("/user/{id}")
-    public ResponseEntity<User> fetchUserById(@PathVariable("id") Long id) {
+    @GetMapping("/{id}")
+    public ResponseEntity<?> fetchUserById(@PathVariable("id") Long id) {
         User user;
         user = userService.fetchUserById(id);
-        return ResponseEntity.ok(user);
+        if(user!=null)
+            return ResponseEntity.ok(user);
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No Record found, Try again !");
     }
 
-    @DeleteMapping("/user/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable("id") Long id) {
         boolean result = userService.deleteUser(id);
-        if(result)
+        if (result)
             return ResponseEntity.ok("User deleted Successfully!!");
         else
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
-    @PutMapping("/user/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<String> updateUser(@PathVariable("id") Long id, @RequestBody User user) {
-        boolean result = userService.updateUser(id,user);
-        if(result)
+        boolean result = userService.updateUser(id, user);
+        if (result)
             return ResponseEntity.ok("User Updated Successfully!!");
         else
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();

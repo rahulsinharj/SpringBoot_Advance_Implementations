@@ -10,10 +10,10 @@ import java.util.List;
 @Repository
 public class UserDaoImpl implements UserDao {
 
+    private static final String KEY = "USER";
+
     @Autowired
     private RedisTemplate redisTemplate;
-
-    private static final String KEY = "USER";
 
     @Override
     public boolean saveUser(User user) {
@@ -30,20 +30,21 @@ public class UserDaoImpl implements UserDao {
     public List<User> fetchAllUser() {
         List<User> users;
         users = redisTemplate.opsForHash().values(KEY);
-        return  users;
+        return users;
     }
 
     @Override
     public User fetchUserById(Long id) {
         User user;
-        user = (User) redisTemplate.opsForHash().get(KEY,id.toString());
+        user = (User) redisTemplate.opsForHash().get(KEY, id.toString());
+        System.out.println("user : "+user);
         return user;
     }
 
     @Override
     public boolean deleteUser(Long id) {
         try {
-            redisTemplate.opsForHash().delete(KEY,id.toString());
+            redisTemplate.opsForHash().delete(KEY, id.toString());
             return true;
         } catch (Exception e) {
             e.printStackTrace();
