@@ -37,7 +37,9 @@ public class APIService
 	
 }
 
-/*	@Cacheable 	: to set our cache
+/*	@Cacheable 	: to set our cache	=>	@Cacheable make sure that the request comes-In & the responses goes-Out  is cached in the Caching memory. And when the net get operation happens in the application then the data is retrieved from the Cache and not from the Database. 
+ * 										If the data is not present at the cache, then it will firstly store the data from Database into cache , and then send the response. 
+  
 	@CacheEvict : to remove from cache
 	@CachePut 	:  to update or cache
 	
