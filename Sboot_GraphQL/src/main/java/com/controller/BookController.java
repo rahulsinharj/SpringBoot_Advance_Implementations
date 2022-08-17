@@ -22,8 +22,8 @@ public class BookController {
 	
 	// Create Book
 	@MutationMapping("createBook")				// - for insertion of data
-	public Book createBook(@Argument BookInput book) {
-		
+	public Book createBook(@Argument BookInput book) {			// Parameter argument naming convention should be exactly same as in schema.graphql
+																		// createBook(book:BookInput):Book
 		Book b = new Book();
 		b.setTitle(book.getTitle());
 		b.setDesciption(book.getDesciption());
