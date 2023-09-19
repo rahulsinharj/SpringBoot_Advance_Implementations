@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dummy Payment Gateway</title>
+</head>
+<body>
+<h1>Dummy Payment Gateway</h1>
+
+<h2>Show Payments</h2>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Card Number</th>
+        <th>Card Holder</th>
+        <th>Amount</th>
+    </tr>
+    <tr th:each="payment : ${payments}">
+        <td th:text="${payment.id}"></td>
+        <td th:text="${payment.cardNumber}"></td>
+        <td th:text="${payment.cardHolder}"></td>
+        <td th:text="${payment.amount}"></td>
+    </tr>
+</table>
+
+</body>
+</html>
