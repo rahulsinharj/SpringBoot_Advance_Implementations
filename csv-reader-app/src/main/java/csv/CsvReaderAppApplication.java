@@ -8,6 +8,8 @@ public class CsvReaderAppApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CsvReaderAppApplication.class, args);
+
+		System.out.println("CsvReaderAppApplication started !!");
 	}
 
 }
